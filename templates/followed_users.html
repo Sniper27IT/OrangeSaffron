@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 id="followed-users">Followed Users</h2>
+    <p id="followed-users-description">Here's the list of all the users you are currently following. You can access their profile by clicking on their username, or you can browse their recipes using the button.</p>
+
+  {% if following_users %}
+    <ul>
+      {% for user in following_users %}
+        <li>
+          <a href="{% url 'profile' user_id=user.userprofile.user.id %}" class="followed-user">{{ user.username }}</a>
+          <a href="{% url 'recipe_search' %}?author={{ user.userprofile.user.id }}" class="search-by-author">Browse this user's recipes</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No users being followed.</p>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 id="searchmessage">Search Orange Saffron recipes:</h2>
+  <form method="get" action="{% url 'recipe_search' %}">
+    <div class="search-form" id="search-form">
+      <input type="text" name="query" placeholder="Search by title" value="{{ query }}" id="search-input">
+      <select name="category" id="category-select">
+        <option value="">All Categories</option>
+        {% for category in categories %}
+          <option value="{{ category.id }}" {% if category.id == category_id %}selected{% endif %}>{{ category.name }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" id="search-button">Search</button>
+    </div>
+  </form>
+
+  {% if query %}
+    <p>Showing results for: "{{ query }}"</p>
+  {% endif %}
+
+  <ul class="recipe-list">
+    {% for recipe in recipes %}
+      <li>
+        <a href="{% url 'recipe_detail' recipe_id=recipe.id %}" class="recipe-link" id="recipe-link">{{ recipe.title }}</a>
+      </li>
+    {% empty %}
+      <li>No recipes found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+

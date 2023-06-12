@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Create Recipe</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="form-group">
+      <label for="id_photos">Add a photo</label>
+      <input type="file" name="photos" id="id_photos" accept="image/*" multiple>
+    </div>
+
+    <button type="submit">Create</button>
+  </form>
+{% endblock %}

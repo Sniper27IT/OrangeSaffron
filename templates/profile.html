@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h4>User Profile</h4>
+
+
+<h1 id="profile-name">{{ user_profile.user.username }}</h1>
+
+{% if user_profile.profile_picture %}
+  <div id="profile-picture-container">
+    <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" id="profile-picture">
+  </div>
+{% endif %}
+
+<h3>About me:</h3>
+    <div id="bio">
+  <p>{{ user_profile.bio }}</p>
+    </div>
+<br>
+
+<h3>Social media</h3>
+      <div class="share-buttons">
+    {% if user_profile.social_facebook %}
+      <a href="{{ user_profile.social_facebook }}" class="social-button facebook">Facebook</a>
+    {% endif %}
+    {% if user_profile.social_twitter %}
+      <a href="{{ user_profile.social_twitter }}" class="social-button twitter">Twitter</a>
+    {% endif %}
+    {% if user_profile.social_instagram %}
+      <a href="{{ user_profile.social_instagram }}" class="social-button instagram">Instagram</a>
+    {% endif %}
+    {% if user_profile.social_linkedin %}
+      <a href="{{ user_profile.social_tiktok }}" class="social-button tiktok">TikTok</a>
+    {% endif %}
+  </div>
+<br>
+    {% if request.user == user_profile.user %}
+    <a href="{% url 'recipe_search' %}?author={{ user.id }}" id="search-button">Browse your Recipes</a>
+    {% endif %}
+    <br>
+    <br>
+
+<h3>Statistics:</h3>
+    <div id="statistics">
+  <p>Recipes Created: {{ user_profile.recipes_created }}</p>
+  <p>Favorite Category: {{ user_profile.favorite_category }}</p>
+  <p>Followers: {{ user_profile.followers.count }}</p>
+    </div>
+
+
+        {% if request.user != user_profile.user %}
+        {% if request.user not in user_profile.followers.all %}
+            <form action="{% url 'follow_user' user_profile.user.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Follow this user</button>
+            </form>
+        {% else %}
+            <form action="{% url 'unfollow_user' user_profile.user.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Unfollow</button>
+            </form>
+        {% endif %}
+    {% endif %}
+
+
+
+{% if request.user == user_profile.user %}
+        <button id="toggle-form-btn" onclick="toggleUpdateForm()">Edit your Profile</button>
+  <form id ="update-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+  </form>
+    {% endif %}
+
+{% endblock %}

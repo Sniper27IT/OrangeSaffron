@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div id="welcome-container" class="container text-center">
+    <h1 id="welcome-heading">Welcome to Orange Saffron!</h1>
+
+    {% if request.user.is_authenticated %}
+      <p id="welcome-message">Welcome, {{ request.user.username }}!</p>
+    {% else %}
+      <p id="welcome-message">Please log in to access all the features.</p>
+    {% endif %}
+
+    <p id="app-description">Orange Saffron is a web application that allows you to create and share recipes with other users.</p>
+  </div>
+{% endblock %}

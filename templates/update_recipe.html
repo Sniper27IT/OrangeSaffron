@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Edit Recipe</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ recipe_form.as_p }}
+
+    <div class="form-group">
+      <label for="id_photos">Add a photo</label>
+      <input type="file" name="photos" id="id_photos" accept="image/*" multiple>
+    </div>
+
+    {% for photo in photos %}
+      <div class="existing-photo">
+        <img src="{{ photo.image.url }}" alt="Recipe Photo">
+        <a href="{% url 'delete_photo' photo.id %}" class="delete-photo">Delete</a>
+      </div>
+    {% endfor %}
+
+    <button type="submit">Save Changes</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Register</h1>
+      <p>You must provide a valid username and a password. You can customize your profile right now, or edit later in the "My Profile" section</p>
+    <hr>
+    <form method="post">
+      {% csrf_token %}
+      {{ user_form.as_p }}
+      {{ profile_form.as_p }}
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+{% endblock %}
+
+
+
+
+
+

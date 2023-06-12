@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>My Favorite Recipes</h2>
+  {% if favorites %}
+    <ul>
+      {% for favorite in favorites %}
+        <li>
+          <form action="{% url 'recipe_detail' recipe_id=favorite.recipe.id %}" method="get" class="recipe-button-form">
+            <button type="submit" class="recipe-button">{{ favorite.recipe.title }}</button>
+          </form>
+        </li>
+      {% empty %}
+        <li>No favorite recipes found.</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No favorite recipes found.</p>
+  {% endif %}
+{% endblock %}
