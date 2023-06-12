@@ -1,5 +1,5 @@
 # OrangeSaffron
-OrangeSaffron è un piccolo progetto universitario di Web App design utilizzando Django Framework e Python. OrangeSaffron è un sito che permette agli
+OrangeSaffron è un piccolo progetto universitario di Web App design realizzato utilizzando Django Framework e Python. OrangeSaffron è un sito che permette agli
 utenti registratidi caricare ricette di cucina. Il sito offre delle basilari funzionalità di social networking, tra cui la possibilità di seguire
 un altro utente e vederne le ricette pubblicate, mettere like (chiamati Yummies) e aggiungere ricette ai preferiti. Nella pagina di ciascuna
 ricetta è possibile usare pulsanti per la condivisione social, ed è presente una rudimentale comment box. Gli utenti possono modificare il proprio
