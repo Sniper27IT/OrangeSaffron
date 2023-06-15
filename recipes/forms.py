@@ -17,7 +17,7 @@ class PhotoForm(forms.ModelForm):
         model = Photo
         fields = ['image']
         widgets = {
-            'image': forms.ClearableFileInput(attrs={'multiple': True}),
+            'image': forms.ClearableFileInput(attrs={'multiple': False}),
         }
 
     def clean(self):
