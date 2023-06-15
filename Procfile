@@ -1,1 +1,1 @@
-web: python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn RecipesSharing.wsgi --log-file -
+web: python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn RecipesSharingpi.wsgi --log-file -
